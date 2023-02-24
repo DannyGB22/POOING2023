@@ -4,8 +4,8 @@ print("")
 print("#####Datos Heroe#")
 especieH = input("Escribe la especie del Heroe: ")
 nombreH = input("Escribe el nombre del Heroe: ")
-alturaH= float(input("Escribe la altura del Heroe"))
-recargaH = int(input("Cauntas bals recargas al Heroe: "))
+alturaH= float(input("Escribe la altura del Heroe: "))
+recargaH = int(input("Cauntas balas recargas al Heroe: "))
 
 print("")
 print("#####Datos Villano#")
@@ -21,25 +21,32 @@ heroe= Personaje(especieH,nombreH,alturaH)
 villano= Personaje(especieV,nombreV,alturaV)
 
 #3. usar los atributos
+
+#Ejemolo de set para un atributo
+heroe.setNombre("Pepe pecas")
+
 print("")
 print("#####Objeto Heroe#")
-especieH = input("El personaje se llama:"+heroe.Nombre)
-nombreH = input("Pertenece a la especie: "+heroe.Especie)
-alturaH= float(input("Y tiene una altura de"+str(heroe.Altura)))
+print("El personaje se llama:"+heroe.getNombre())
+print("Pertenece a la especie: "+heroe.getEspecie())
+print("Y tiene una altura de"+str(heroe.getAltura()))
 
 #4. Usar metodos
-heroe.Correra(True)
+heroe.Correr(True)
 heroe.lanzarGranadas()
 heroe.recargarArma(recargaH)
+
+#Ejemplo de un metodo privado
+#heroe.__pensar()
 
 #3. usar los atributos
 print("")
 print("#####Objeto Villano#")
-especieV = input("El personaje se llama:"+villano.Nombre)
-nombreV = input("Pertenece a la especie: "+villano.Especie)
-alturaV= float(input("Y tiene una altura de"+str(villano.Altura)))
+print("El personaje se llama:"+villano.getNombre())
+print("Pertenece a la especie: "+villano.getEspecie())
+print("Y tiene una altura de"+str(villano.getAltura()))
 
 #3. Usar metodos
-villano.Correra(False)
+villano.Correr(False)
 villano.lanzarGranadas()
 villano.recargarArma(recargaV)
