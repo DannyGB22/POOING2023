@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+from tkinter import messagebox
+
 from ControladorBD import * # Le presentamos la clase a la ventana 
 
 # Crear una objeto de tipo controlador
@@ -10,6 +12,22 @@ controlador = controladorBD()
 
 def ejecutaInsert():
     controlador.guardarUsuario(varNom.get(), varCor.get(), varCon.get())
+ 
+ 
+def ejecutaSelectU():
+    rsUsuario = controlador.consultaUsuario(varBus.get())
+    
+    for usu in rsUsuario:
+        cadena = str(usu[0])+" "+ usu[1]+" "+ usu[2]+" "+ str(usu[3])
+    
+    
+    if(rsUsuario): 
+        
+        print(cadena)
+    else:
+        messagebox.showinfo("No encontrado", "usuario no registrado en la BD")
+        
+
 
  
 ventana = Tk()
@@ -50,6 +68,21 @@ panel.add(pestana3, text="Consultar Usuario ")
 panel.add(pestana4, text="Actualizar Usuario ")
 
 btnGuardar= Button(pestana1, text="Guardar Usuario",command=ejecutaInsert).pack()
+
+#Pesataña 2; Buscar Usuario 
+
+titulo2= Label(pestana1, text="Buscar Usuario", fg="green", font=("modern", 18)).pack()
+
+
+varBus= tk.StringVar()
+Lblid= Label(pestana2, text="Identificador de usuario: ").pack()
+txtid= Entry(pestana2, textvariable=varBus).pack()
+btnBusqueda=Button(pestana2,text="Buscar", command= ejecutaSelectU).pack()
+
+subBus= Label(pestana2, text="Registrado:", fg= "blue", font=("Modern", 15) ).pack()
+texBus=tk.Text(pestana2, height=5, width=52).pack()
+
+
 
 ventana.mainloop()
 
