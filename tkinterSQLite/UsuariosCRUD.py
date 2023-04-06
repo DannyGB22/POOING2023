@@ -58,6 +58,25 @@ def ejecutaConsultas():
         
 
  
+ 
+#pestaña 4
+def actualizar():
+    controlador.actualizarUsuario(varIdUpd.get(), varNombreUpd.get(), varCorreoUpd.get(), varContraUpd.get())
+ 
+
+#pestaña5
+
+def eliminar():
+    if varConfirmar.get() == 1:
+        controlador.eliminarUsuario(varIdDel.get())
+        # Limpiar el campo de texto de eliminar usuario y el checkbutton
+        varConfirmar.set(0)
+        varIdDel.set("")
+    else:
+        messagebox.showwarning("CUIDADO", "Debe confirmar la eliminacion")
+        
+        
+ 
 ventana = Tk()
 ventana.title("CRUD Usuarios ")
 ventana.geometry("500x300")
@@ -90,7 +109,7 @@ varCon= tk.StringVar()
 LblCon= Label(pestana1, text="Contraseña: ").pack()
 txtCon= Entry(pestana1, textvariable=varCon).pack()
 
-panel.add(pestana1, text="Formulario de ussuarios ")
+panel.add(pestana1, text="Formulario de usuarios ")
 panel.add(pestana2, text="Buscar Usuario ")
 panel.add(pestana3, text="Consultar Usuario ")
 panel.add(pestana4, text="Actualizar Usuario ")
@@ -109,7 +128,8 @@ txtid= Entry(pestana2, textvariable=varBus).pack()
 btnBusqueda=Button(pestana2,text="Buscar", command= ejecutaSelectU).pack()
 
 subBus= Label(pestana2, text="Registrado:", fg= "blue", font=("Helvetica", 15) ).pack()
-texBus=tk.Text(pestana2, height=5, width=52).pack()
+texBus=tk.Text(pestana2, height=5, width=52)
+texBus.pack()
 
 
 
@@ -135,11 +155,46 @@ btnconsulta.pack()
 #Pestaña 4
 titulo3 = Label(pestana4, text="Actualizar Usuario", fg="purple", font=("Helvetica", 18)).pack()
 
+#campos de texto para actualizar usuario
+
+id = tk.Label(pestana4, text="ID: ", font=("Arial", 12)).pack()
+varIdUpd = tk.StringVar() 
+txtIdUpd = tk.Entry(pestana4, textvariable=varIdUpd, font=("Arial", 12)).pack()
+
+nombreUpd = tk.Label(pestana4, text="Nombre: ", font=("Arial", 12)).pack()
+varNombreUpd = tk.StringVar() 
+txtNombreUpd = tk.Entry(pestana4, textvariable=varNombreUpd, font=("Arial", 12)).pack()
+
+correoUpd = tk.Label(pestana4, text="Correo: ", font=("Arial", 12)).pack()
+varCorreoUpd = tk.StringVar() 
+txtCorreoUpd = tk.Entry(pestana4, textvariable=varCorreoUpd, font=("Arial", 12)).pack()
+
+contraUpd = tk.Label(pestana4, text="Contraseña nueva: ", font=("Arial", 12)).pack()
+varContraUpd = tk.StringVar() 
+txtContraUpd = tk.Entry(pestana4, textvariable=varContraUpd, font=("Arial", 12)).pack()
+
+#boton para actualizar usuario
+btnActualizar = tk.Button(pestana4, text="Actualizar usuario", font=("Helvetica", 12), bg="black", fg="white", command=actualizar).pack(padx=5, pady=5)
 
 
 
 #pestaña 5
 titulo3 = Label(pestana5, text="Eliminar Usuario", fg="turquoise", font=("Helvetica", 18)).pack()
+
+#campos de texto para eliminar usuario
+id = tk.Label(pestana5, text="ID: ", font=("Arial", 12)).pack()
+varIdDel = tk.StringVar() #Variable para guardar el id
+txtIdDel = tk.Entry(pestana5, textvariable=varIdDel, font=("Arial", 12)).pack()
+
+#checkbox
+varConfirmar = tk.IntVar()
+confirmar = tk.Checkbutton(pestana5, text="Confirmar", variable=varConfirmar, font=("Arial", 12)).pack()
+
+# Crear el boton para eliminar usuario
+btnEliminar = tk.Button(pestana5, text="Eliminar usuario", font=("Arial", 12), bg="red", fg="white", command=eliminar).pack(padx=10, pady=10)
+
+
+
 
 
 ventana.mainloop()

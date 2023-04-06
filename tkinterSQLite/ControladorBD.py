@@ -102,4 +102,53 @@ class controladorBD:
         except sqlite3.OperationalError:
             print("Error de consulta")
             
+    
+   
+   
+    def actualizarUsuario(self, id, nombre, correo, contra):
+        # Buscar usuario en la base de datos por su id y actualizarlo
+        if (id == "" and correo == "" and contra == "" and nombre == ""):
+            messagebox.showwarning("CUIDADO", "Todos los campos estan vacios")
+            return
+        elif (id == "" or correo == "" or contra == "" or nombre == ""):
+            messagebox.showwarning("CUIDADO", "Revisa tus datos, uno o mas campos estan vacios")
+            return
+
+    
+        conx = self.conexionBD()
+        cursor = conx.cursor()
+        contra= self.encriptarCon(contra)
+        # Si el usuario existe se intenta actualizar
+        try:
+            cursor.execute("UPDATE TB_registrados SET nombre = ?, correo = ?, contra = ? WHERE id = ?", (nombre, correo, contra, id))
+            conx.commit()
+            conx.close()
+            messagebox.showinfo("EXITO", "Se actualizo el usuario")
+        # Si ocurre un error al consultar el usuario se muestra un mensaje de error
+        except sqlite3.OperationalError:
+            messagebox.showwarning("Error", "Ocurrio un error al actualizar el usuario")                       
+            
+            
+
+    def eliminarUsuario(self, id):
+        # Buscar usuario en la base de datos por su id y eliminarlo
+        if (id == ""):
+            messagebox.showwarning("CUIDADO", "El campo id esta vacio")
+            return
+
+
+        conx = self.conexionBD()
+        cursor = conx.cursor()
+        
+        # Si el usuario existe se intenta eliminar
+        try:
+            cursor.execute("DELETE FROM TB_registrados WHERE id = ?", (id,))
+            conx.commit()
+            conx.close()
+            messagebox.showinfo("EXITO", "Se elimino el usuario")
+        # Si ocurre un error al consultar el usuario se muestra un mensaje de error
+        except sqlite3.OperationalError:
+            messagebox.showwarning("Error", "Ocurrio un error al eliminar el usuario")
+            
+            
             
