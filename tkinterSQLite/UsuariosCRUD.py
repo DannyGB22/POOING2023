@@ -71,11 +71,11 @@ pestana1 = ttk.Frame(panel)
 pestana2 = ttk.Frame(panel)
 pestana3 = ttk.Frame(panel)
 pestana4 = ttk.Frame(panel)
-
+pestana5 = ttk.Frame(panel)
 
 #pastana1: formulario Usuarios 
 
-titulo= Label(pestana1, text="Registro de usuarios", fg="Blue", font=("modern", 18)).pack()
+titulo= Label(pestana1, text="Registro de usuarios", fg="Blue", font=("Helvetica", 18)).pack()
 
 
 varNom= tk.StringVar()
@@ -94,12 +94,13 @@ panel.add(pestana1, text="Formulario de ussuarios ")
 panel.add(pestana2, text="Buscar Usuario ")
 panel.add(pestana3, text="Consultar Usuario ")
 panel.add(pestana4, text="Actualizar Usuario ")
+panel.add(pestana5, text="Eliminar Usuario ")
 
 btnGuardar= Button(pestana1, text="Guardar Usuario",command=ejecutaInsert).pack()
 
 #Pesataña 2; Buscar Usuario 
 
-titulo2= Label(pestana2, text="Buscar Usuario", fg="green", font=("modern", 18)).pack()
+titulo2= Label(pestana2, text="Buscar Usuario", fg="green", font=("Helvetica", 18)).pack()
 
 
 varBus= tk.StringVar()
@@ -107,14 +108,14 @@ Lblid= Label(pestana2, text="Identificador de usuario: ").pack()
 txtid= Entry(pestana2, textvariable=varBus).pack()
 btnBusqueda=Button(pestana2,text="Buscar", command= ejecutaSelectU).pack()
 
-subBus= Label(pestana2, text="Registrado:", fg= "blue", font=("Modern", 15) ).pack()
+subBus= Label(pestana2, text="Registrado:", fg= "blue", font=("Helvetica", 15) ).pack()
 texBus=tk.Text(pestana2, height=5, width=52).pack()
 
 
 
 #pestaña 3 consultar usuarios
 
-titulo3 = Label(pestana3, text="Consultar Usuarios", fg="red", font=("modern", 18)).pack()
+titulo3 = Label(pestana3, text="Consultar Usuarios", fg="red", font=("Helvetica", 18)).pack()
 
 columnas = ('id', 'nombre', 'correo', 'contra')
 
@@ -130,6 +131,15 @@ tree.pack()
 btnconsulta= Button(pestana3, text="consultar", command= ejecutaConsultas)
 btnconsulta.pack()
 
+
+#Pestaña 4
+titulo3 = Label(pestana4, text="Actualizar Usuario", fg="purple", font=("Helvetica", 18)).pack()
+
+
+
+
+#pestaña 5
+titulo3 = Label(pestana5, text="Eliminar Usuario", fg="turquoise", font=("Helvetica", 18)).pack()
 
 
 ventana.mainloop()
