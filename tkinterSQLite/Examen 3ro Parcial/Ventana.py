@@ -5,6 +5,30 @@ from Controlador import *
 
 controlador = controladorBD_Banco
 
+def ejecutaInsert():
+    controlador.guardarUsuario(varCnt.get(), varNum.get(), varSal.get())
+
+
+
+
+
+def cuentas():
+    rsUsuario = controlador.consulta()
+    if (rsUsuario == None):
+        return
+    tree.delete(*tree.get_children())
+    for usu in rsUsuario:
+        tree.insert("", "end",text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
+
+
+#Funcion Actualizar cuenta   
+
+def ejecutaUpdate():
+    
+    controlador.actualizarCuenta(BusT4.get(),varCnt2.get(), varNum2.get(), varSal2.get())
+    cuentas()
+    
+    
 Ventana= Tk()
 Ventana.title("BANCO BBVA")
 Ventana.geometry("700x500")
@@ -66,7 +90,7 @@ tree.heading('IDCuenta', text='Nomero de ID')
 tree.heading('NoCuenta', text='Numero de Cuenta')
 tree.heading('Saldo', text='Saldo ')
 tree.pack(padx=10, pady=10, fill=BOTH, expand=True)
-btnBusquedas = Button(pestana3,text="Consultar", bg="blue", fg="white", font=("Arial Black", 10), command=tareas).pack(pady=15)
+btnBusquedas = Button(pestana3,text="Consultar", bg="blue", fg="white", font=("Arial Black", 10), command=cuentas).pack(pady=15)
 
 #Actualizar datos de la cuenta
 
@@ -74,28 +98,27 @@ titulo = Label(pestana2,text="Actualizar Cuentas", fg="white", font=("Times",18)
 
 BusT4 = tk.StringVar()
 
-lblid= Label(pestana2, text="Numero de tarea: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
+lblid= Label(pestana2, text="Cuenta ID: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
 
 txtid = Entry(pestana2,textvariable=BusT4, width=60).pack()
 
 varCnt2 = tk.StringVar()
 
-lblCnt = Label(pestana2, text="Nombre: ",bg="#2AEA1E", font=("Times",12)).pack(pady=10)
+lblCnt = Label(pestana2, text="Numero de ID: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
 
 txtCnt = Entry(pestana2,textvariable=varCnt2, width=60).pack()
 
 varNum2 = tk.StringVar()
 
-lblNum = Label(pestana2, text="Descripcion: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
+lblNum = Label(pestana2, text="Numero de cuenta: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
 
 txtNum = Entry(pestana2,textvariable=varNum2, width=60).pack()
 
 varSal2 = tk.StringVar()
 
-lblSal = Label(pestana2, text="Fecha Inicio: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
+lblSal = Label(pestana2, text="Saldo: ", bg="#2AEA1E", font=("Times",12)).pack(pady=10)
 
 txtSal = Entry(pestana2,textvariable=varSal2, width=60).pack()
-
 
 
 btnBusqueda = Button(pestana2,text="Actualizar",command=ejecutaUpdate, bg="#26C6D1", font=("Arial Black", 10), fg="white").pack(pady=15)

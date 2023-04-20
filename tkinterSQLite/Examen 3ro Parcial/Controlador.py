@@ -16,7 +16,7 @@ class controladorBD_Banco:
             print("No se pudo conectar")
             
             
-        def guardarUsuario(self,Cnt,Num,Sal,):
+    def guardarUsuario(self,Cnt,Num,Sal,):
         
         #1.- Llamar a la conexion
         conx = self.conexionBD()
@@ -58,10 +58,13 @@ class controladorBD_Banco:
             conx.close()
             messagebox.showinfo("Exito", "Se actualizo la cuenta exitosamente")
 
-        def consulta(self):
+   
+    def consulta(self):
         #1.- Preparamos nuestra conexion a base de datos
         
+
         conx =self.conexionBD()
+
         try:
             #Preparamos el select
             cursor = conx.cursor()
